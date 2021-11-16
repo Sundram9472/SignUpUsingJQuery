@@ -3,21 +3,82 @@
 <head>
 <title>Sign-Up</title>
 <script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.10.2.js" type="text/javascript"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+<script src=   "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <script>
- $(document).ready(function() {
-   $("#check_data").click(function() {
-      var x = $("form").serializeArray();
+$(document).ready(function() {
+
+
+var  Condition=false;
+
+$("form").change(function(){
+debugger
+if(
+    ($("#fname").val() != '')
+    ||($("#lname").val() !='')
+    ||($("#Gmail").val() !='')
+    ||($("#UserName").val() !='')
+    ||($("#Age").val() !='')
+    ||($("#Contact").val() !='')
+    ||($("#Password").val() != '')
+)
+{
+ $("#Reset").prop("disabled",false);
+}
+});
+
+$("form").change(function(){
+debugger
+if(
+    ($("#fname").val() != '')
+    &&($("#lname").val() !='')
+    &&($("#Gmail").val() !='')
+    &&($("#UserName").val() !='')
+    &&($("#Age").val() !='')
+    &&($("#Contact").val() !='')
+    &&($("#Password").val() != '')
+)
+{
+    
+debugger
+$("#check_data").prop("disabled",false);
+}
+else
+{
+debugger
+$("#chech_data").prop("disabled",true);
+}
+});
+/*if(condition)
+{
+    $('#check_data').click(function(){
+    $('form')[0].reset();
+    });
+}
+*/
+ $("#check_data").click(function() {
+  $("#check_data").prop("disabled", true);
+  $("#Reset").prop("disabled",true);
+    var x = $("form").serializeArray();
     $.each(x, function(i, field) {
     $("#show_details").append(field.name + ":-"+ field.value + "\n");
+ 
 });
 });
+$("#check_data").click(function() {
+
+});
+
+
         $("#Refresh").click(function () {
-    location.reload(true);
-    alert('Thank You For Registering With Us..');
+        location.reload(true);
+        alert('Thank You For Registering With Us..');
 });  
-});   
+});  
+    
 </script>
+
 <style>
     .text-left {
         background-image: url(https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105__480.png);
@@ -71,57 +132,65 @@ padding-right: 1000px;
                 &emsp;&emsp;&emsp;&emsp;
                 <label for="UserName"><b>UserName:</b></label>&emsp;<input type="text" id="UserName" name="UserName" required /><br />
                 <br />
-                <label for="Password"><b>PassWord:</b></label>&emsp; <input type="password" id="Password" name="V" required />
+                <label for="Password"><b>PassWord:</b></label>&emsp; <input type="password" id="Password" name="Password"  minlength="8" required />
                 &emsp;&emsp;&emsp;&emsp;
-                <label for="Age"><b>Age:</b></label>&emsp; <input type="text" id="Password" name="V" required />
-                <br /><br />
+                <label for="Age"><b>Age:</b></label>&emsp; <input type="text" id="Age" name="Age" required />
+                <br /><br /> 
+
+	  <div class="Gender_selection">
                 <p><b>Gender:</b></p>
                 <label for="Male">Male</label>
-                <input type="radio" id="Male" name="Gender" value="male">
+                <input type="radio" name="Gender" value="male">
                 |
                 <label for="FeMale">FeMale</label>
-                <input type="radio" id="FeMale" name="Gender" value="male">
+                <input type="radio"  name="Gender" value="male">
                 |
                 <label for="Other">Other</label>
-                <input type="radio" id="Other" name="Gender" value="Other"><br />
+                <input type="radio"  name="Gender" value="Other"><br />
+	   </div>
+
+          <div id="Maternal_Status">
                 <p><b>Material Status</b></p>
                 <select name="materialStatus" id="materialStatus">
-		    <option value="Select">Select</option>
+                    <option value="Select">Select</option>
                     <option value="Married">Married</option>
                     <option value="UnMarried">UnMarried</option>
                 </select><br /><br>
+	 </div>
                 <label for="Contact"><b>Contact:</b></label><br />
                 <input type="text" id="Contact" name="Contact" required /><br />
 
+	<div id="Required_Document">
                 <p><b>Requried Document</b></p>
                 <label for="AddhharCard">AddharCard</label>
                 <input type="checkbox" id="AddharCard" name="AddharCard" value="Addhar_Yes" />
-		|
+    		|
                 <label for="PanCard">PanCard</label>
                 <input type="checkbox" id="PanCard" name="PanCard" value="Pan_Yes" />
-		|		
+                |       
                 <label for="Driving_Lic">Driving Liciense</label>
                 <input type="checkbox" id="Driving_Lic" name="Driving_Lic" value="Dl_Yes" />
-		|
+                |
                 <label for="Matric_Document">MatricDocument</label>
                 <input type="checkbox" id="Matric_Document" name="Matric_Document" value="Matric_Yes" /><br />
-			
+            
                 <label for="Inter_Document">InterDocument</label>
                 <input type="checkbox" id="Inter_Document" name="Inter_Document" value="Inter_Yes" /><br />
-		<br>
-                <input type="button" value="Check-Data" id="check_data">
-
+              <br>
+	</div>
+                <input type="button" value="Check-Data" id="check_data" disabled="disabled">  <input type="reset" value="Reset-Form" id="Reset" disabled="disabled">   
             </fieldset>
         </form>
-     	<br>
+        <br>
       <div id="Student_details">
              <fieldset>
                  <legend>Student Details</legend>
                  <textarea id="show_details"></textarea>
-           </fieldset>
-	  <button id="Refresh">Submit</button>
+                 
+                 </fieldset>
+      <button id="Refresh">Submit</button>
        </div> 
-	
+    
     </div>
          
 </div>
